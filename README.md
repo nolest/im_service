@@ -3,6 +3,16 @@
 * 该项目涉及php端服务器、im服务器、前端
 * 该网页聊天有两个版本：
 
+## 目录说明
+* 版本一
+	* /dest
+	* /src2.0
+	* /gulpfile.js
+	* ~working.cmd 
+* 版本二
+	* /client
+	* /src	
+
 ## 版本一：
 * 基于vue.js，编译环境gulp，scr2.0 => dest，异步文件夹ajax
     * lib/IMSDK.js 封装了 lib/mqtt_client.js 以及调用页面方法
