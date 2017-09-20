@@ -33,7 +33,7 @@
     ```
     * 验证
     ```javascript
-        get_ali_token
+    	get_ali_token
     	calculate
     ```
     * 角色选择
