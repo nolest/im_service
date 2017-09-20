@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <title>海军突击队pc-登录</title>
+    <link type="text/css" rel="stylesheet" href="http://static-c.yueus.com/im/client/static/pc/style/libs/common_b99c7e4.css">
+<link type="text/css" rel="stylesheet" href="http://static-c.yueus.com/im/client/static/pc/style/index/index_2e0216d.css">
+<script type="text/javascript" charset="gbk" src="http://static-c.yueus.com/im/client/static/pc/lib/mod_327a0b0.js"></script>
+<script type="text/javascript" charset="gbk" src="http://static-c.yueus.com/im/client/static/pc/js/common/common_90272fd.js"></script>
+</head>
+<body>
+<main class="page-main" role="main" style="padding:0">
+    <div class="login-page">
+        <div class="logo">
+            <i class="login_logo"></i>
+        </div>
+        <div class="login-block">
+            <img class="img" src="http://static-c.yueus.com/im/client/static/pc/image/pai/navy_code_c957067.jpg" style="width: 210px;height: 210px">
+            <p class="sub_title">=========================</p>
+            <div class="inputs">
+                <div class="input_con">
+                    <input placeholder="登录账号" data-role="input_id">
+                </div>
+                <div class="input_con">
+                    <input type="password" placeholder="登录密码" data-role="input_pw">
+                </div>
+            </div>
+            <div class="btns">
+                <!--div class="btn_white login_btn" role="seller" data-role="login" style="display: inline-block;">我是商家</div-->
+                <div class="btn_white login_btn" role="buyer" data-role="login" style="display: inline-block;">登录</div>
+            </div>
+            <div class="clear_storage" data-role="clear">清除登录记录</div>
+            <!--div class="modd ds-box orient-h pack-justify"  style="margin-top: 20px;font-size: 10px">
+                <div data-role="mod-login" data-mod-id="100008">模拟登录100008</div>
+                <div data-role="mod-login" data-mod-id="100049">模拟登录100049</div>
+            </div-->
+        </div>
+    </div>
+
+</main>
+</body>
+<script>
+
+window.__test__str = /test/.test(window.location.href)?'test/':'';
+
+window.$__ajax_domain = 'http://www.yueus.com/im/client/'+__test__str + 'ajax/';
+
+var $ = require('components/jquery/jquery.js');
+
+$(function(){
+
+    if(window.localStorage.getItem('__Yueus__IM__index__id'))
+    {
+        $('[data-role="input_id"]').val(window.localStorage.getItem('__Yueus__NAVY__index__id'));
+    }
+    if(window.localStorage.getItem('__Yueus__IM__index__pw'))
+    {
+        $('[data-role="input_pw"]').val(window.localStorage.getItem('__Yueus__NAVY__index__pw'));
+    }
+
+    $('[data-role="login"]').on('click',function()
+    {
+        var con = $(this);
+        //location.href = './face/face.php';
+
+        //return
+
+        var id = $('[data-role="input_id"]').val();
+
+        var pw = $('[data-role="input_pw"]').val();
+
+        if(!id||!pw)
+        {
+            alert('请输入账号密码');
+            return
+        }
+
+        $.ajax
+        ({
+            url: window.$__ajax_domain + 'navy_login.php',
+            data : {login_id :id,pw: pw},
+            dataType: 'json',
+            type: 'POST',
+            cache: false,
+            beforeSend: function()
+            {
+
+            },
+            success: function(data)
+            {
+                var code = data.result_data.result;
+
+                var message = data.result_data.message;
+
+                if(code == 1)
+                {
+                    window.localStorage.setItem('__Yueus__NAVY__index__id',id);
+                    window.localStorage.setItem('__Yueus__NAVY__index__pw',pw);
+
+                    console.log(con.attr('role'))
+                    if(con.attr('role') == 'seller')
+                    {   //代理商家，接收消费者信息
+                        location.href = './navy_room/chat_room.php';
+                    }
+                    else
+                    {   //代理消费者，接收商家发来的信息，暂时只用于代理客服账号
+                        location.href = './navy_room/chat_room_buyer.php';
+                    }
+
+                }
+                else{
+                    alert(message)
+                }
+            },
+            error: function(data)
+            {
+
+            },
+            complete: function()
+            {
+
+            }
+        });
+    })
+
+    $('[data-role="clear"]').on('click',function()
+    {
+        if(window.localStorage.getItem('__Yueus__NAVY__index__id'))
+        {
+            window.localStorage.removeItem('__Yueus__NAVY__index__id');
+            window.localStorage.removeItem('__Yueus__NAVY__index__pw');
+            location.reload();
+        }
+    });
+
+    $('[data-role="mod-login"]').on('click',function()
+    {
+        var id = $(this).attr('data-mod-id');
+
+        location.href = 'http://yp.yueus.com/_yp_login.php?user_id=' + id
+    })
+
+});
+
+</script>
+</html>

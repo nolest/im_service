@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <title>wechat链接测试a</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=gbk">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <meta name="HandheldFriendly" content="true">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.3, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="wap-font-scale" content="no">
+    <link href="../../../../style/wechat/mobileBase.scss?{timeshot}" rel="stylesheet" type="text/css">
+    <link href="../../../../style/wechat/wechat.scss?{timeshot}" rel="stylesheet" type="text/css">
+    <script src="../../../../lib/mod.js?{timeshot}"></script>
+    <script src='../../../../lib/vue.min.js?{timeshot}'></script>
+    <script src="../../../../lib/mqttws31.js?{timeshot}"></script>
+    <script src="../../../../lib/inflate.min.js?{timeshot}"></script>
+    <script src="../../../../lib/md5-min.js?{timeshot}"></script>
+    <script src="../../../../lib/IMSDK.js?{timeshot}"></script>
+    <script src="../../../../lib/lib.js?{timeshot}"></script>
+    <!--script src="../../../../lib/vconsole.min.js?{timeshot}"></script-->
+</head>
+<body>
+<div class="ds-box orient-v" id="page-main">
+    <div class="ds-box pack-justify align-center head">
+        <div class="ds-box orient-v" style="padding-left: 15px">
+            {timeshot}
+            <div><% send_role %></div>
+            <div>{machine}</div>
+        </div>
+        <input placeholder="To:" v-model="receive_id"/>
+        <div style="padding-right: 15px"><% yue_login_id %></div>
+    </div>
+    <div class="ds-box flex-1 orient-v body" >
+        <div class="message" v-for="item in message_array">
+            <div>form <% item.send_user_id %></div>
+            <div>type <% item.media_type %></div>
+            <div>title <% item.card_title %></div>
+            <div>content <% item.content %></div>
+        </div>
+    </div>
+    <div class="ds-box pack-center pack-center align-center bot">
+        <input placeholder="message" v-model="send_input"/>
+        <div @click.stop="send_message">发送信息</div>
+    </div>
+</div>
+
+</body>
+<script>
+/*
+var client = null;
+
+function onConnectionLost(responseObject) {
+
+    if (responseObject.errorCode !== 0) {
+    }
+
+    client.connect({
+        onSuccess:onConnect,
+        keepAliveInterval: 10
+    });
+}
+
+function onConnect(context) {
+    // Subscribe after connect success.
+    alert('context:' + JSON.stringify(context))
+    client.subscribe('yuebuyer/100029', {
+        qos: 1,
+        onSuccess: onSubscribeSuccess
+    });
+}
+
+function onSubscribeSuccess(granted) {
+    var message_arr = [];
+    alert(JSON.stringify(granted))
+    var suback_obj = parseSubscribeAck(granted);
+    for (var i = 0; i < suback_obj.length; ++i) {
+
+        if (suback_obj[i].messages) {
+            var all_msg = suback_obj[i].messages;
+            for (var j = 0; j < all_msg.length; ++j) {
+                var msg_data = JSON.parse(all_msg[j]);
+
+                message_arr.push(msg_data);
+                //console.log(message_arr)
+            }
+
+            alert(JSON.stringify(message_arr))
+
+        }
+    }
+
+
+
+}
+
+function onMessageArrived(message){
+    var msg_data = JSON.parse(message.payloadString);
+    // 收到消息后需要主动删除消息，否则下次登录时仍然会收到。message_receive
+    alert(JSON.stringify(msg_data))
+}
+
+var parseSubscribeAck = function (granted) {
+
+    var pos = 0;
+    var buffer = granted.grantedQos;
+    var result = [];
+
+    while (pos < buffer.length) {
+        var obj = {};
+
+        // The mqtt protocol.(1 Byte of qos)
+        obj.qos = buffer.subarray(pos, pos + 1)[0];
+        pos += 1;
+
+        // The poco chat protocol
+        // 4B msg_count + [ 4B idx + 4B length + payload ]
+        if (pos > buffer.length - 4) {
+            console.error('poco chat protocol fail.');
+            return;
+        }
+        var msg_count = readInt32BE(buffer, pos);
+        pos += 4;
+
+        obj.messages = [];
+        for (var i = 0; i < msg_count; ++i) {
+            var idx = readInt32BE(buffer, pos);
+            pos += 4;
+
+            var length = readInt32BE(buffer, pos);
+            pos += 4;
+
+            if (0 === length) {
+                continue;
+            }
+
+            var content = buffer.subarray(pos, pos + length);
+            pos += length;
+
+            var uarr_content = (new Zlib.Inflate(content)).decompress();
+            obj.messages.push(arrayToString(uarr_content));
+        }
+
+        result.push(obj);
+    }
+
+    return result;
+}
+
+var arrayToString = function (uarr) {
+    var asc_content = String.fromCharCode.apply(null, uarr);
+    return decodeURIComponent(escape(asc_content));
+}
+
+
+var readInt32BE = function(src, pos) {
+    var num = src[pos] << 24 | src[pos + 1] << 16 | src[pos + 2] << 8 | src[pos + 3];
+    num <<= 0;
+    return num;
+
+//        var int32_array = new Int32Array(src.subarray(pos, pos + 4));
+//        int32_array.reverse();
+//        return int32_array[0];
+};
+
+client = new Paho.MQTT.Client('online-wifi.yueus.com', 8983, 'yuebuyer/100029');
+
+// set callback handlers
+client.onConnectionLost = onConnectionLost;
+client.onMessageArrived = onMessageArrived;
+
+// connect the client
+client.connect({
+    onSuccess:onConnect,
+    keepAliveInterval: 10
+});
+*/
+
+    var timeshot = '{timeshot}';
+    Vue.config.delimiters = ['<%','%>'];
+    Vue.config.unsafeDelimiters = ['<%%','%%>'];
+    //Vue.config.debug = true;
+    //Vue.config.devtools = true;
+
+    window.__test__str = /test/.test(window.location.href)?'test/':'';
+    window.$__ajax_domain = 'http://www.yueus.com/im/client/'+__test__str + 'ajax/';
+
+    var self_role = 'buyer';//'seller';// 'buyer';
+    var _id = '{yue_login_id}';
+
+
+    IMSDK.init
+    ({
+        hostname : 'online-wifi.yueus.com',
+        port : 8983,
+        //url:'ws://online-wifi.yueus.com:8983',
+        subscribe_role:self_role,//需要订阅自己的信箱，即发信方
+        client_id:_id,
+        connect_fail : function(e)
+        {
+            alert("断了")
+        },
+        message_connect_success : function(data)
+        {
+            alert('connect_sucess:' + JSON.stringify(data));
+            vm.$emit('message_comes',data);
+        },
+        message_receive : function(data)
+        {
+            alert('message_receive');
+            vm.$emit('message_comes',[data]);
+        },
+        message_send_success : function(send_data,xhr)
+        {
+            vm.$emit('message_comes',[send_data]);
+            vm.$emit('input_clear');
+        },
+        message_send_fail : function(send_data,xhr)
+        {
+            alert('信息发送失败，请重试');
+        }
+    });
+
+    console.log('17:21');
+
+var vm = new Vue({
+    el: '#page-main',
+    ready : function(){
+        IMSDK.connect();
+    },
+    data : function(){
+        return {
+            receive_id : '123241',
+            send_media_type : 'text',
+            send_url :
+            {
+                text : 'http://sendtxt-wifi.yueus.com/sendtxt.cgi',
+                media : 'http://sendmedia.yueus.com:8000/sendmedia.cgi',
+                test_url : 'http://14.29.52.13/sendtxt.cgi'
+            },
+            send_role : 'yue' + self_role, //'yueseller',//,yuebuyer //自己的身份，即发送方的身份
+            yue_login_id : '{yue_login_id}',
+            send_input : '',
+            message_array : []
+        }
+    },
+    events :{
+        'message_comes' : function(data){
+            for (var i in data){
+                this.$data.message_array.push(data[i])
+            }
+        },
+        'input_clear' : function(){
+            this.$data.send_input = '';
+        }
+    },
+    methods : {
+        send_message : function(){
+            var self = this;
+
+            if(!self.$data.send_input){alert('不能发送空消息');return}
+
+            var obj =
+            {
+                send_user_id : self.$data.yue_login_id,
+                to_user_id : self.$data.receive_id,
+                media_type : self.$data.send_media_type,
+                msg_key : hex_md5(self.$data.yue_login_id+self.$data.receive_id+'J&&#3435WS#KSJDF'),
+                content : self.$data.send_input,
+                send_user_role : self.$data.send_role,
+                from:"agent"
+            };
+
+            IMSDK.send_msg(obj,self.$data.send_url.text);
+        }
+    }
+})
+
+
+
+
+
+
+</script>
+
+</html>

@@ -1,0 +1,14 @@
+{{#each data}}
+    <div class="ds-box pack-justify words_text_item align-center" data-text-id="{{text_id}}">
+        <div class="ds-box inner_text flex-1" data-send-text="{{text}}">{{text}}</div>
+        <div class="ds-box backup flex-1 fn-hide" data-role="backup">
+            <input class="ds-box backup_edit flex-1" value="{{text}}" placeholder="请输入日常用语" data-role="backup_edit"/>
+        </div>
+        <div class="ds-box control_con">
+            <div class="inner_del inner_btn" data-role="text-del">删除</div>
+            <div class="inner_edit inner_btn" data-role="text-edit">编辑</div>
+            <div class="inner_cancel inner_btn fn-hide" data-role="text-cancel">取消</div>
+            <div class="inner_save inner_btn fn-hide" data-role="text-save">保存</div>
+        </div>
+    </div>
+{{/each}}

@@ -1,0 +1,190 @@
+@charset "UTF-8";
+html {
+  height: 100%; }
+
+body {
+  font-family: 'Helvetica Neue', Helvetica, 'Hiragino Sans GB', 'Microsoft YaHei', 'Î¢ÈíÑÅºÚ', Arial, sans-serif;
+  border: medium none;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: url('http://static.yueus.com/im/client/test/static/pc/image/pai/bg-big.jpg') 50% 50%/cover no-repeat; }
+
+::-webkit-scrollbar-track {
+  background-color: transparent; }
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px; }
+
+::-webkit-scrollbar-thumb {
+  border-radius: 3px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  background-color: #c3c3c3; }
+
+main {
+  height: 100%; }
+
+.edit_words-page {
+  width: 80%;
+  height: 80%;
+  background: #eee; }
+  .edit_words-page .title {
+    text-align: center;
+    line-height: 50px;
+    height: 50px;
+    border-bottom: 1px solid #d6d6d6; }
+  .edit_words-page .edit_words_con .tags {
+    width: 200px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    overflow: scroll; }
+    .edit_words-page .edit_words_con .tags .inner_tags {
+      min-height: 40px;
+      line-height: 20px;
+      padding: 0px 2px 0px 10px;
+      border-bottom: 1px solid #e2e2e2;
+      cursor: pointer; }
+      .edit_words-page .edit_words_con .tags .inner_tags .tag_name {
+        border-radius: 4px;
+        background: #26292E;
+        color: #fff;
+        padding: 4px; }
+      .edit_words-page .edit_words_con .tags .inner_tags:hover .tag_name {
+        background: #3A3F45; }
+    .edit_words-page .edit_words_con .tags .add_tag {
+      text-align: center;
+      height: 32px;
+      line-height: 33px;
+      background: #26292E;
+      margin: 10px 10px 10px 15px;
+      color: #fff;
+      cursor: pointer;
+      border-radius: 2px; }
+      .edit_words-page .edit_words_con .tags .add_tag:hover {
+        background: #3A3F45; }
+  .edit_words-page .edit_words_con .text_side {
+    border-left: 1px solid #e2e2e2; }
+    .edit_words-page .edit_words_con .text_side .inner_head {
+      height: 40px;
+      border-bottom: 1px solid #e2e2e2; }
+      .edit_words-page .edit_words_con .text_side .inner_head .tag_name {
+        padding-left: 15px;
+        font-weight: 600;
+        line-height: 40px; }
+      .edit_words-page .edit_words_con .text_side .inner_head .controls {
+        padding: 0px 15px; }
+        .edit_words-page .edit_words_con .text_side .inner_head .controls .btn {
+          background: #2e3238;
+          text-align: center;
+          cursor: pointer;
+          color: #fff;
+          font-size: 12px;
+          padding: 5px 15px;
+          margin-right: 15px; }
+    .edit_words-page .edit_words_con .text_side .new_text_con {
+      padding: 10px 0px;
+      border-bottom: 1px solid #d6d6d6; }
+      .edit_words-page .edit_words_con .text_side .new_text_con .new_text_input_con {
+        padding: 0px 15px 0px 15px; }
+      .edit_words-page .edit_words_con .text_side .new_text_con .new_text_input {
+        height: 30px;
+        line-height: 31px;
+        border: 0;
+        border-radius: 2px;
+        -moz-border-radius: 2px;
+        -webkit-border-radius: 2px;
+        background-color: #26292E;
+        color: #fff;
+        padding-left: 30px;
+        font-size: 16px; }
+      .edit_words-page .edit_words_con .text_side .new_text_con .new_text_btn {
+        text-align: center;
+        margin-right: 30px;
+        background: #2e3238;
+        cursor: pointer;
+        color: #fff;
+        font-size: 12px;
+        padding: 5px 15px; }
+    .edit_words-page .edit_words_con .text_side .text {
+      overflow-y: auto;
+      overflow-x: hidden;
+      overflow: scroll; }
+      .edit_words-page .edit_words_con .text_side .text .words_text_item {
+        min-height: 40px;
+        border-bottom: 1px solid #e2e2e2;
+        padding: 0px 9px; }
+        .edit_words-page .edit_words_con .text_side .text .words_text_item .inner_btn {
+          background: #2e3238;
+          text-align: center;
+          cursor: pointer;
+          color: #fff;
+          font-size: 12px;
+          padding: 5px 15px;
+          margin-right: 15px; }
+        .edit_words-page .edit_words_con .text_side .text .words_text_item .inner_save {
+          background: #028c71; }
+        .edit_words-page .edit_words_con .text_side .text .words_text_item .inner_cancel {
+          background: #b94a48; }
+        .edit_words-page .edit_words_con .text_side .text .words_text_item .backup {
+          padding-right: 87px; }
+        .edit_words-page .edit_words_con .text_side .text .words_text_item .backup_edit {
+          background: #eee;
+          font-size: 16px;
+          line-height: 20px;
+          border: none;
+          resize: none;
+          outline: none;
+          font-family: inherit; }
+      .edit_words-page .edit_words_con .text_side .text .words_text_part_empty {
+        color: #333;
+        margin-top: 100px; }
+
+.pics_scan {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.7); }
+  .pics_scan .tips {
+    padding: 0px 20px;
+    border-radius: 10px;
+    margin: 0 auto;
+    width: 400px;
+    height: 247px;
+    background: #fff;
+    box-shadow: 5px 5px 10px #888888; }
+  .pics_scan .input_con {
+    margin: 0 auto; }
+    .pics_scan .input_con input {
+      width: 214px;
+      height: 40px;
+      line-height: 41px;
+      border: 0;
+      border-radius: 2px;
+      -moz-border-radius: 2px;
+      -webkit-border-radius: 2px;
+      background-color: #26292E;
+      color: #fff;
+      padding-left: 30px;
+      font-size: 16px; }
+  .pics_scan .btns {
+    margin: 0 auto;
+    width: 154px;
+    margin-top: 30px; }
+    .pics_scan .btns .confirm {
+      background: #26292E;
+      padding: 5px 10px;
+      color: #fff;
+      height: 20px;
+      line-height: 21px;
+      cursor: pointer; }
+    .pics_scan .btns .cancel {
+      border: 1px solid #26292E;
+      padding: 5px 10px;
+      color: #26292E;
+      height: 18px;
+      line-height: 19px;
+      cursor: pointer; }

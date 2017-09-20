@@ -1,0 +1,19 @@
+.options_faces_panel{
+  position: absolute;
+  top: -272px;
+  left: 15px;
+  height: 274px;
+  width: 496px;
+  background: #fff;
+  border: 1px solid #dedede;
+  overflow: auto;
+  font-size: 0px;
+  .options_faces_s{
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    border-right: 1px solid rgb(211,228,220);
+    border-bottom: 1px solid rgb(211,228,220);
+    cursor: pointer;
+  }
+}

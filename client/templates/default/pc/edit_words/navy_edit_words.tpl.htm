@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <title>商家{this_seller_id}的聊天记录</title>
+    <link type="text/css" rel="stylesheet" href="http://static-c.yueus.com/im/client/static/pc/style/libs/common_b99c7e4.css">
+<link type="text/css" rel="stylesheet" href="http://static-c.yueus.com/im/client/static/pc/style/edit_words/edit_words_4e6ee79.css">
+<script type="text/javascript" charset="gbk" src="http://static-c.yueus.com/im/client/static/pc/lib/mod_327a0b0.js"></script>
+<script type="text/javascript" charset="gbk" src="http://static-c.yueus.com/im/client/static/pc/lib/lib_0df1370.js"></script>
+<script type="text/javascript" charset="gbk" src="http://static-c.yueus.com/im/client/static/pc/js/common/common_90272fd.js"></script>
+</head>
+<body>
+<main class="ds-box orient-v align-center pack-center" role="main">
+    <div class="ds-box orient-v edit_words-page">
+        <div class="title">日常用语编辑</div>
+        <div class="ds-box edit_words_con flex-1">
+            <div class="ds-box tags orient-v" data-role="tags"><div class="add_tag" data-role="add_tag">新增标签</div></div>
+            <div class="ds-box orient-v flex-1 text_side">
+                <div class="ds-box inner_head pack-justify align-center fn-hide" data-role="inner_head">
+                    <div class="tag_name" data-role="tag_name"></div>
+                    <div class="ds-box controls" data-role="controls">
+                        <div class="btn del" data-role="del">删除</div>
+                        <div class="btn edit" data-role="edit">编辑</div>
+                    </div>
+                </div>
+                <div class="ds-box pack-justify new_text_con align-center fn-hide" data-role="new_text_con">
+                    <div class="ds-box new_text_input_con flex-1">
+                        <input class="ds-box flex-1 new_text_input" placeholder="输入常用回复" data-role="new_text_input"/>
+                    </div>
+                    <div class="new_text_btn" data-role="text-new">新建</div>
+                </div>
+                <div class="ds-box text orient-v flex-1" data-role="text_con"></div>
+            </div>
+        </div>
+    </div>
+    <div class="ds-box orient-v pack-center pics_scan fn-hide" data-role="pics_scan">
+        <div class="ds-box orient-v tips_add tips pack-center fn-hide" data-role="tips_add">
+            <div class="ds-box input_con pack-center">
+                <input placeholder="添加标签" data-role="tag_add_inputs"/>
+            </div>
+            <div class="ds-box pack-justify btns">
+                <div class="confirm" data-role="confirm">确定</div>
+                <div class="cancel" data-role="cancel">取消</div>
+            </div>
+        </div>
+    </div>
+    </main>
+</body>
+
+<script>
+    window.__test__str = /test/.test(window.location.href)?'test/':'';
+
+    window.$__ajax_domain = 'http://www.yueus.com/im/client/'+__test__str + 'ajax/';
+
+    var $ = require('components/jquery/jquery.js');
+
+    var words_tags = {words_tags}
+
+    var tags_tpl = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var stack1, functionType="function", escapeExpression=this.escapeExpression, self=this;
+
+function program1(depth0,data) {
+  
+  var buffer = "", stack1, helper;
+  buffer += "\r\n    <div class=\"ds-box inner_tags pack-center align-center\" data-tag-id=\"";
+  if (helper = helpers.tag_id) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.tag_id); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\" data-tag-name=\"";
+  if (helper = helpers.tag_name) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.tag_name); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\"><div class=\"tag_name\">";
+  if (helper = helpers.tag_name) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.tag_name); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</div></div>\r\n";
+  return buffer;
+  }
+
+  stack1 = helpers.each.call(depth0, (depth0 && depth0.data), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
+  if(stack1 || stack1 === 0) { return stack1; }
+  else { return ''; }
+  });
+
+    var words_text_item_tpl = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression, self=this;
+
+function program1(depth0,data) {
+  
+  var buffer = "", stack1, helper;
+  buffer += "\r\n    <div class=\"ds-box pack-justify words_text_item align-center\" data-text-id=\"";
+  if (helper = helpers.text_id) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.text_id); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\">\r\n        <div class=\"ds-box inner_text flex-1\" data-send-text=\"";
+  if (helper = helpers.text) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.text); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\">";
+  if (helper = helpers.text) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.text); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</div>\r\n        <div class=\"ds-box backup flex-1 fn-hide\" data-role=\"backup\">\r\n            <input class=\"ds-box backup_edit flex-1\" value=\"";
+  if (helper = helpers.text) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.text); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\" placeholder=\"请输入日常用语\" data-role=\"backup_edit\"/>\r\n        </div>\r\n        <div class=\"ds-box control_con\">\r\n            <div class=\"inner_del inner_btn\" data-role=\"text-del\">删除</div>\r\n            <div class=\"inner_edit inner_btn\" data-role=\"text-edit\">编辑</div>\r\n            <div class=\"inner_cancel inner_btn fn-hide\" data-role=\"text-cancel\">取消</div>\r\n            <div class=\"inner_save inner_btn fn-hide\" data-role=\"text-save\">保存</div>\r\n        </div>\r\n    </div>\r\n";
+  return buffer;
+  }
+
+  stack1 = helpers.each.call(depth0, (depth0 && depth0.data), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\r\n";
+  return buffer;
+  });
+
+    var words_text_empty_tpl = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  
+
+
+  return "<div class=\"ds-box pack-center words_text_part_empty\">----该标签没有日常用语----</div>";
+  });
+
+    console.log(words_tags);
+
+    $(function()
+    {
+        var page =
+        {
+            init : function()
+            {
+                var self = this;
+
+                self.tags_con = $('[data-role="tags"]');
+
+                self.render_lib = words_tags.result_data;
+
+                self.render();
+            },
+            render : function()
+            {
+                var self = this;
+
+                self.tags_con.prepend(tags_tpl({data:self.render_lib}));
+
+                self.event();
+            },
+            event : function()
+            {
+                var self = this;
+
+                //----------------tag渲染后绑定事件----------------------
+                $('[data-tag-id]').on('click',function()
+                {
+                    var con = $(this);
+
+                    var tag_id = con.attr('data-tag-id');
+
+                    var tag_name = con.attr('data-tag-name');
+
+                    var tag_name_obj = $('[data-role="tag_name"]');
+
+                    tag_name_obj.html(tag_name);
+
+                    tag_name_obj.attr('current_text',tag_name);
+
+                    tag_name_obj.attr('tag_id',tag_id);
+
+                    $('[data-role="inner_head"]').removeClass('fn-hide');
+
+                    $('[data-role="new_text_con"]').removeClass('fn-hide');
+
+                    var str = '';
+
+                    console.log(self.render_lib)
+                    for(var i in self.render_lib)
+                    {
+                        if(self.render_lib[i].tag_id == tag_id)
+                        {
+                            if(self.render_lib[i].list.length != 0)
+                            {
+                                str = words_text_item_tpl({data:self.render_lib[i].list})
+                            }
+                            else
+                            {
+                                str = words_text_empty_tpl({});
+                            }
+                        }
+                    }
+
+                    $('[data-role="text_con"]').html(str);
+
+                    self._bind_item_event();
+                })
+                //----------------tag渲染后绑定事件 END----------------------
+
+                //----------------新增标签事件 ------------------------------
+
+                $('[data-role="add_tag"]').on('click',function()
+                {
+                    pop.show('add_tag',
+                            {
+                                confirm : function(text)
+                                {
+                                    var obj =
+                                    {
+                                        tag_name : text,
+                                        control_type : 'add'
+                                    }
+
+                                    self._tag_ajax(obj);
+
+                                    console.log(text);
+                                },
+                                cancel : function()
+                                {
+                                    pop.hide();
+                                }
+                            });
+                })
+
+                //----------------新增标签事件 END---------------------------
+            },
+            _bind_item_event : function()
+            {
+                var self = this;
+
+                $('[data-role="text-new"]')
+                        .unbind('click')
+                        .on('click',function()
+                        {
+                            var tag_id = $('[data-role="tag_name"]').attr('tag_id');
+
+                            var text = $('[data-role="new_text_input"]').val();
+
+                            if(!text)
+                            {
+                                return
+                            }
+
+                            var obj =
+                            {
+                                control_type : 'add',
+                                text : text,
+                                tag_id : tag_id
+                            }
+
+                            self._text_ajax(obj)
+                        });
+
+                $('[data-role="text-del"]')
+                        .unbind('click')
+                        .on('click',function()
+                        {
+                            var con = $(this);
+
+                            var text_id = con.parents('[data-text-id]').attr('data-text-id');
+
+                            var tag_id = $('[data-role="tag_name"]').attr('tag_id');
+
+                            var obj =
+                            {
+                                control_type : 'del',
+                                text_id : text_id
+                            }
+
+                            self._text_ajax(obj)
+                        })
+
+                $('[data-role="text-edit"]')
+                        .unbind('click')
+                        .on('click',function()
+                        {
+                            var con = $(this);
+
+                            con.parents('[data-text-id]').find('[data-role="backup_edit"]').val(con.parents('[data-text-id]').find('[data-send-text]').attr('data-send-text'))
+
+                            con.parents('[data-text-id]').find('[data-send-text]').addClass('fn-hide');
+
+                            con.parents('[data-text-id]').find('[data-role="backup"]').removeClass('fn-hide');
+
+                            con.addClass('fn-hide');
+
+                            con.parents('[data-text-id]').find('[data-role="text-del"]').addClass('fn-hide');
+
+                            con.parents('[data-text-id]').find('[data-role="text-cancel"]').removeClass('fn-hide');
+
+                            con.parents('[data-text-id]').find('[data-role="text-save"]').removeClass('fn-hide');
+                        })
+
+                $('[data-role="text-save"]')
+                        .unbind('click')
+                        .on('click',function()
+                        {
+                            var con = $(this);
+
+                            var text_id = con.parents('[data-text-id]').attr('data-text-id');
+
+                            var text = con.parents('[data-text-id]').find('[data-role="backup_edit"]').val();
+
+                            if(!text)
+                            {
+                                return
+                            }
+
+                            var obj =
+                            {
+                                control_type : 'edit',
+                                text_id : text_id,
+                                text: text
+                            }
+
+                            self._text_ajax(obj)
+                        })
+
+                $('[data-role="text-cancel"]')
+                        .unbind('click')
+                        .on('click',function()
+                        {
+                            var con = $(this);
+
+                            con.parents('[data-text-id]').find('[data-send-text]').removeClass('fn-hide');
+
+                            con.parents('[data-text-id]').find('[data-role="backup"]').addClass('fn-hide');
+
+                            con.addClass('fn-hide');
+
+                            con.parents('[data-text-id]').find('[data-role="text-del"]').removeClass('fn-hide');
+
+                            con.parents('[data-text-id]').find('[data-role="text-edit"]').removeClass('fn-hide');
+
+                            con.parents('[data-text-id]').find('[data-role="text-save"]').addClass('fn-hide');
+                        })
+
+                $('[data-role="del"]')
+                        .unbind('click')
+                        .on('click',function()
+                        {
+                            console.log('1');
+
+                            var tag_id = $('[data-role="tag_name"]').attr('tag_id');
+
+                            var obj =
+                            {
+                                control_type : 'del',
+                                tag_id : tag_id
+                            }
+
+                            self._tag_ajax(obj);
+                        })
+
+                $('[data-role="edit"]')
+                        .unbind('click')
+                        .on('click',function()
+                        {
+                            var tag_name_obj = $('[data-role="tag_name"]');
+
+                            var tag_id = tag_name_obj.attr('tag_id');
+
+                            pop.show('edit_tag',
+                                    {
+                                        current_text : tag_name_obj.attr('current_text'),
+                                        confirm : function(text)
+                                        {
+                                            var obj =
+                                            {
+                                                tag_name : text,
+                                                control_type : 'edit',
+                                                tag_id : tag_id
+                                            }
+
+                                            self._tag_ajax(obj);
+
+                                            console.log(text);
+                                        },
+                                        cancel : function()
+                                        {
+                                            pop.hide();
+                                        }
+                                    });
+                        })
+            },
+            _tag_ajax : function(data)
+            {
+                var self = this;
+
+                $.ajax
+                ({
+                    url: window.$__ajax_domain + 'navy_words_tags_control.php',
+                    data : data,
+                    dataType: 'json',
+                    type: 'POST',
+                    cache: false,
+                    beforeSend: function()
+                    {
+
+                    },
+                    success: function(data)
+                    {
+                        location.reload();
+                    },
+                    error: function(data)
+                    {
+
+                    },
+                    complete: function()
+                    {
+
+                    }
+                });
+            },
+            _text_ajax : function(data)
+            {
+                var self = this;
+
+                $.ajax
+                ({
+                    url: window.$__ajax_domain + 'navy_words_text_control.php',
+                    data : data,
+                    dataType: 'json',
+                    type: 'POST',
+                    cache: false,
+                    beforeSend: function()
+                    {
+
+                    },
+                    success: function(data)
+                    {
+                        location.reload();
+                    },
+                    error: function(data)
+                    {
+
+                    },
+                    complete: function()
+                    {
+
+                    }
+                });
+
+            }
+        }
+
+        var pop =
+        {
+            init : function()
+            {
+                var self = this;
+
+                self.contain = $('[data-role="pics_scan"]');
+
+                self.render();
+            },
+            render : function()
+            {
+                var self = this;
+            },
+            show : function(type,options)
+            {
+                var self = this;
+
+                var confirm = options.confirm || function(){};
+
+                var cancel = options.cancel || function(){};
+
+                switch (type)
+                {
+                    case 'add_tag':
+                        self.contain.removeClass('fn-hide');
+                        self.contain.find('[data-role="tips_add"]').removeClass('fn-hide');
+                        self.contain.find('[data-role="confirm"]')
+                                .unbind('click')
+                                .on('click',function()
+                                {
+                                    if(typeof confirm == 'function')confirm.call(this,self.contain.find('[data-role="tag_add_inputs"]').val())
+                                });
+
+                        self.contain.find('[data-role="cancel"]')
+                                .unbind('click')
+                                .on('click',function()
+                                {
+                                    if(typeof cancel == 'function')cancel.call(this)
+                                });
+                        break;
+                    case 'edit_tag':
+                        self.contain.removeClass('fn-hide');
+                        self.contain.find('[data-role="tips_add"]').removeClass('fn-hide');
+                        self.contain.find('[data-role="tag_add_inputs"]').val(options.current_text);
+                        self.contain.find('[data-role="confirm"]')
+                                .unbind('click')
+                                .on('click',function()
+                                {
+                                    if(typeof confirm == 'function')confirm.call(this,self.contain.find('[data-role="tag_add_inputs"]').val())
+                                });
+
+                        self.contain.find('[data-role="cancel"]')
+                                .unbind('click')
+                                .on('click',function()
+                                {
+                                    if(typeof cancel == 'function')cancel.call(this)
+                                });
+                }
+            },
+            hide : function()
+            {
+                var self = this;
+
+                self.contain.addClass('fn-hide');
+
+                self.contain.find('[data-role="tips_add"]').addClass('fn-hide');
+            },
+            _event : function()
+            {
+                var self = this;
+
+
+            }
+        }
+        page.init();
+
+        pop.init();
+    })
+</script>
+</html>

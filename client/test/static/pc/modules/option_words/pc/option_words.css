@@ -1,0 +1,55 @@
+.options_words_panel {
+  position: absolute;
+  top: -272px;
+  left: 15px;
+  height: 274px;
+  width: 600px;
+  background: #fff;
+  border: 1px solid #dedede;
+  overflow: auto; }
+  .options_words_panel .words_part_head {
+    min-height: 40px;
+    border-bottom: 1px solid #ccc;
+    padding: 0px 15px; }
+    .options_words_panel .words_part_head .inner_tags {
+      line-height: 40px;
+      margin-right: 15px;
+      display: inline-block;
+      cursor: pointer;
+      padding: 0px 5px; }
+      .options_words_panel .words_part_head .inner_tags:hover {
+        background: #ccc; }
+      .options_words_panel .words_part_head .inner_tags.current {
+        background: #ccc; }
+    .options_words_panel .words_part_head .go_to_edit {
+      line-height: 40px;
+      font-size: 16px;
+      cursor: pointer; }
+  .options_words_panel .words_part_body {
+    height: 233px;
+    overflow: auto;
+    overflow-x: hidden; }
+    .options_words_panel .words_part_body .text_body_empty {
+      text-align: center;
+      width: 100%;
+      margin-top: 100px;
+      color: #ccc; }
+    .options_words_panel .words_part_body .words_text_part_empty {
+      text-align: center;
+      width: 100%;
+      margin-top: 100px;
+      color: #ccc; }
+    .options_words_panel .words_part_body .words_text_item {
+      min-height: 40px;
+      line-height: 20px;
+      border-bottom: 1px solid #e2e2e2; }
+      .options_words_panel .words_part_body .words_text_item .inner_text {
+        padding: 10px 0px 10px 15px; }
+      .options_words_panel .words_part_body .words_text_item .inner_send {
+        background: #2e3238;
+        text-align: center;
+        cursor: pointer;
+        color: #fff;
+        font-size: 12px;
+        padding: 5px 15px;
+        margin-right: 15px; }

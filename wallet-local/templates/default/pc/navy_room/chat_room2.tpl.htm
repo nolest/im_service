@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <title>代理商家{yue_login_id}</title>
+    <link type="text/css" rel="stylesheet" href="http://localhost/yue_new/mall/wallet-local/static/pc/style/base.css">
+<link type="text/css" rel="stylesheet" href="http://localhost/yue_new/mall/wallet-local/static/pc/style/chat_room/chat_room.css">
+<script type="text/javascript" charset="gbk" src="http://localhost/yue_new/mall/wallet-local/static/pc/lib/mod.js"></script>
+<script type="text/javascript" charset="gbk" src="http://localhost/yue_new/mall/wallet-local/static/pc/lib/mqttws31.js"></script>
+<script type="text/javascript" charset="gbk" src="http://localhost/yue_new/mall/wallet-local/static/pc/lib/inflate.min.js"></script>
+<script type="text/javascript" charset="gbk" src="http://localhost/yue_new/mall/wallet-local/static/pc/lib/md5-min.js"></script>
+<script type="text/javascript" charset="gbk" src="http://localhost/yue_new/mall/wallet-local/static/pc/lib/IMSDK.js"></script>
+<!--script src="../../../../lib/lib.js"></script-->
+    <script type="text/javascript" charset="gbk" src="http://localhost/yue_new/mall/wallet-local/static/pc/lib/vue.min.js"></script>
+<style>
+        .exc_input{position:absolute; right:0; top:0;font-size:0px; width:62px;height:40px;opacity:0; filter:alpha(opacity=0);cursor: pointer}
+        li{ list-style: none}
+        ul{padding-left: 0px;padding-right: 40px}
+        .btn{
+            cursor: pointer;
+        }
+    </style>
+
+
+
+
+</head>
+<body>
+<div id="pages">
+    <input v-model="navy_id">
+    <input v-model="seller_id">
+    <div @click.stop='add_navy' class='btn'>增加</div>
+<div style="display: -webkit-box">
+<div>
+    <div>水军列表</div>
+    <ul>
+        <li v-for="($index, item) in navy">水军id:<% item.id %></li>
+    </ul>
+</div>
+<div>
+    <div>商家列表</div>
+    <ul>
+        <li v-for="($index, item) in seller">商家id:<% item.id %></li>
+    </ul>
+</div>
+</div>
+    <textarea v-model="textarea"></textarea>
+</div>
+<script type="text/javascript" charset="utf-8" src="http://172.16.36.6:8132/livereload.js"></script></body>
+<script>
+//window.$__ajax_domain = 'http://www.yueus.com/im/client/'+__test__str + 'ajax/';
+Vue.config.delimiters = ['<%','%>'];
+Vue.config.unsafeDelimiters  = ['<%%','%%>'];
+    var vm = new Vue({
+        el : '#pages',
+        data : function(){
+            return {
+                navy_id : '',
+                seller_id : '',
+                textarea : '',
+                navy : [{id:'100029',name:''},{id:'100030',name:''},{id:'100031',name:''}],
+                seller : [{id:'123421',name:''}],
+                msg_list : [],
+                history_lists :
+                        [
+                            {
+                                navy_seller : '100029_123421',
+                                list:
+                                        [
+                                            {form:'100029',content:''},
+                                            {form:'100030',content:''}
+                                        ]
+                            },
+                            {
+                                navy_seller : '100030_123421',
+                                list:
+                                        [
+                                            {form:'100030',content:''},
+                                            {form:'100029',content:''}
+                                        ]
+                            }
+                        ]
+            }
+        },
+        methods: {
+            add_navy: function () {
+                if(this.$data.navy_id && this.$data.seller_id ){
+                    this.$data.navy.push({id:this.$data.navy_id,name:'123'});
+                    this.$data.seller.push({id:this.$data.seller_id,name:'123'})
+                }
+            }
+        }
+    })
+</script>
+
+</html>
