@@ -5,13 +5,13 @@
 
 ## 目录说明
 * 版本一
-	* /dest
-	* /src2.0
-	* /gulpfile.js
-	* ~working.cmd 
+	* /dest 目标目录
+	* /src2.0 源码目录
+	* /gulpfile.js gulp配置文件
+	* ~working.cmd 监听开始
 * 版本二
-	* /client
-	* /src	
+	* /client 目标目录
+	* /src	源码目录
 
 ## 版本一：
 * 基于vue.js，编译环境gulp，scr2.0 => dest，异步文件夹ajax
@@ -43,7 +43,7 @@
     * 日常用语增删
 
 ## 版本二：(旧版)
-* 基于jquery，前端模板引擎handlebars，编译环境fis，scr => client
+* 基于jquery，前端模板引擎handlebars，编译环境fis，src => client
 * 通用模块
     * cookie操作 common/cookie
     * I_WX_SDK common/I_WX_SDK
