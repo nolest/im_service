@@ -26,24 +26,96 @@
     * 234722572 nolest（前端）
     * 30019672 荣少（php端服务器、后台历史记录操作、配置）
 * 主要功能包括
-    * 鉴权 
+    * 鉴权
+    ```javascript
+    	mqtt_login
+    	get_auth
+    ```
     * 验证
+    ```javascript
+        get_ali_token
+    	calculate
+    ```
     * 角色选择
+    ```javascript
+    	change_login_type
+    	ok_login_type
+    	go_to_login
+    ```
     * mqtt链接状态
+    ```javascript
+    	login_success
+    	connect_lost
+    	message_receive
+    	onSubscribe
+    ```
     * 桌面提示
+    ```javascript
+    	notification
+    	call_notification
+    ```
     * 新增消息
     ```javascript
     	add_red_point
+    	delete_message
+    	chatId_click
+    	clean_unread
+    	resolve_new_receive
     ```
-    * 订阅信箱
     * 代理列表
+    ```javascript
+    	get_agent_list
+    	set_service_list_by_agent_id
+    	chatId_click
+    ```
     * 服务列表
+    ```javascript
+    	get_service_list
+    	serviceId_click
+    ```
     * php服务器请求
+    ```javascript
+    	$http.post
+    ```
     * im服务器请求
+    ```javascript
+    	api_request
+    ```
     * 发送消息（文字、图片、自定义消息类型、语音、服务卡片等、表情）
+    ```javascript
+    	send_request
+    	base_send_parame
+    	send
+    	emoji
+    	input_pic
+    	choose_face
+    ```
     * 历史记录
+    ```javascript
+    	fetch_history
+    	get_history_more
+    ```
     * 新增联系人
+    ```javascript
+    	service_add
+    ```
     * 日常用语增删
+    ```javascript
+    	options_words
+    	options_words_send
+    	go_to_edit_word
+    ```
+    * 商品列表
+    ```javascript
+    	fetch_goods_list
+    	options_service
+    	service_send
+    	service_goto
+    ```
+    * 输入状态维护
+    ```javascript
+    	textarea_change
+    ```
 
 ## 版本二：(旧版)
 * 基于jquery，前端模板引擎handlebars，编译环境fis，src => client
