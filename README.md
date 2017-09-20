@@ -3,7 +3,7 @@
 * 该项目涉及php端服务器、im服务器、前端
 * 该网页聊天有两个版本：
 
-##版本一：
+## 版本一：
 * 基于vue.js，编译环境gulp，scr2.0 => dest，异步文件夹ajax
     * lib/IMSDK.js 封装了 lib/mqtt_client.js 以及调用页面方法
     * 登录成功 login_success 
@@ -32,7 +32,7 @@
     * 新增联系人
     * 日常用语增删
 
-##版本二：(旧版)
+## 版本二：(旧版)
 * 基于jquery，前端模板引擎handlebars，编译环境fis，scr => client
 * 通用模块
     * cookie操作 common/cookie
